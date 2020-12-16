@@ -5,8 +5,9 @@
   "version": "0.1.0",
   "author": "Andrew Owen <andrew.owen@willowtreeapps.com>",
   "dependencies": {
+    "@babel/register": "^7.12.10",
     "dotenv": "^8.2.0",
-    "gatsby": "^2.24.67",
+    "gatsby": "^2.29.1",
     "gatsby-image": "^2.4.20",
     "gatsby-plugin-manifest": "^2.4.33",
     "gatsby-plugin-offline": "^3.2.30",
@@ -45,8 +46,8 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "cross-env NODE_OPTIONS=\"-r esm\" gatsby develop",
+    "build": "cross-env gatsby build",
+    "develop": "cross-env gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
