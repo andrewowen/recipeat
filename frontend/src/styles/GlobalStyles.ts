@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     }
     h1 {
         margin: 0;
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-weight: 600;
     }
     a {

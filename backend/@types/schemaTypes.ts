@@ -42,7 +42,7 @@ type CommonFieldProps = {
 
 export type StringField = CommonFieldProps & {
   options?: {
-    list: { title: string; value: string }[]
+    list: (string | { title: string; value: string })[]
     layout?: string
   }
 }
@@ -94,10 +94,15 @@ type ArrayOf =
   | ImageField
   | { type: string }
   | BlockField
+  | StringField
 
 export type ArrayField = CommonFieldProps & {
   name: string
   of: ArrayOf[]
+  options?: {
+    layout?: string
+    list?: (string | { title: string; value: string })[]
+  }
 }
 
 type FilterFunctionResult = { filter: string; filterParams?: string }

@@ -8,7 +8,7 @@ const RecipeGrid = styled.div`
     display: none;
   }
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 200px));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 250px));
   gap: 4rem;
   padding: 20px;
   grid-auto-rows: auto auto 100px;
@@ -26,6 +26,31 @@ const RecipeStyles = styled.div`
   .recipeImage {
     border-radius: 20px;
     box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.3);
+  }
+`
+
+const RecipeLinkContainer = styled(Link)`
+  position: relative;
+`
+const RecipeImageTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  .titleBackground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 55px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  h2 {
+    position: absolute;
+    top: 75%;
+    text-align: center;
+    color: #ffffff;
   }
 `
 
@@ -71,6 +96,9 @@ export type Recipe = {
   vegetarian: boolean
   base_ingredients?: string[]
   spices?: string[]
+  sauce?: string[]
+  categories?: string[]
+  steps?: string[]
 }
 
 type Props = {
@@ -81,10 +109,13 @@ const SingleRecipe = ({ recipe }: { recipe: Recipe }) => {
   const { name, image, slug } = recipe
   return (
     <RecipeStyles>
-      <Link to={`/recipe/${slug?.current}`}>
+      <RecipeLinkContainer to={`/recipe/${slug?.current}`}>
         <Img className="recipeImage" fluid={image.asset.fluid} alt={name} />
-        <h2>{name}</h2>
-      </Link>
+        <RecipeImageTitle>
+          <div className="titleBackground" />
+          <h2>{name}</h2>
+        </RecipeImageTitle>
+      </RecipeLinkContainer>
     </RecipeStyles>
   )
 }

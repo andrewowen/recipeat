@@ -28,6 +28,8 @@ export const query = graphql`
       }
       base_ingredients
       spices
+      steps
+      sauce
     }
   }
 `
@@ -40,6 +42,8 @@ const SinglePageRecipe: FC<Props> = ({ data }) => {
     image,
     base_ingredients: baseIngredients,
     spices,
+    sauce,
+    steps,
   } = recipe
   console.log(source)
   return (
@@ -69,8 +73,28 @@ const SinglePageRecipe: FC<Props> = ({ data }) => {
               </li>
             ))}
           </ul>
+          <h1>Sauce</h1>
+          <ul>
+            {sauce?.map((sauceIngredient) => (
+              <li key={sauceIngredient}>
+                <p>{sauceIngredient}</p>
+              </li>
+            ))}
+          </ul>
         </IngredientStyles>
       </RecipeImageAndIngredients>
+      <StepsContainer>
+        <h1>Steps</h1>
+        <ul>
+          {steps?.map((step) => (
+            <Step>
+              <li key={step}>
+                <p>{step}</p>
+              </li>
+            </Step>
+          ))}
+        </ul>
+      </StepsContainer>
     </RecipeGrid>
   )
 }
@@ -79,6 +103,13 @@ const RecipeGrid = styled.div`
   display: grid;
   padding: 20px;
   grid-gap: 2rem;
+  p {
+    font-size: 1.5rem;
+  }
+  ul {
+    font-size: 1.5rem;
+    padding-inline-start: 2rem;
+  }
 `
 
 export const RecipeHeader = styled.div`
@@ -114,12 +145,7 @@ const RecipeImageAndIngredients = styled.div`
 `
 
 const IngredientStyles = styled.div`
-  ul {
-    padding-inline-start: 0rem;
-    font-size: 1.5rem;
-  }
   li {
-    list-style: none;
     margin-bottom: 1.5rem;
     :last-child {
       border-bottom: none;
@@ -131,6 +157,17 @@ const IngredientStyles = styled.div`
     background: #eeeeee;
     margin: -2rem;
   }
+`
+
+const StepsContainer = styled.div`
+  @media screen and (min-width: 600px) {
+    margin-top: 2rem;
+  }
+`
+
+const Step = styled.div`
+  margin-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--darkGrey);
 `
 
 export default SinglePageRecipe

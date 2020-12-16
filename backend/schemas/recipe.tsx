@@ -33,6 +33,21 @@ const RecipeSchema: Document = {
       },
     },
     {
+      title: 'Categories',
+      name: 'categories',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Breakfast', value: 'breakfast' },
+          { title: 'Dinner', value: 'dinner' },
+          { title: 'Snack', value: 'snack' },
+          { title: 'Appetizer', value: 'appetizer' },
+          { title: 'Dessert', value: 'dessert' },
+        ],
+      },
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -63,6 +78,12 @@ const RecipeSchema: Document = {
       title: 'Sauce',
       type: 'array',
       of: [{ type: 'string' }],
+    },
+    {
+      name: 'steps',
+      title: 'Steps',
+      type: 'array',
+      of: [{ type: 'text' }],
     },
   ],
 }
