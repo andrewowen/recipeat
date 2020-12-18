@@ -137,15 +137,16 @@ const MobileSingleRecipe = ({ recipe }: { recipe: Recipe }) => {
 }
 
 const RecipeList: FC<Props> = ({ recipes }) => {
+  const sortedRecipes = recipes.sort((a, b) => a.name.localeCompare(b.name))
   return (
     <>
       <RecipeGrid>
-        {recipes.map((recipe) => (
+        {sortedRecipes.map((recipe) => (
           <SingleRecipe key={recipe.id} recipe={recipe} />
         ))}
       </RecipeGrid>
       <MobileRecipe>
-        {recipes.map((recipe) => (
+        {sortedRecipes.map((recipe) => (
           <MobileSingleRecipe key={recipe.id} recipe={recipe} />
         ))}
       </MobileRecipe>
