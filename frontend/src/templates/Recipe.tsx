@@ -45,7 +45,6 @@ const SinglePageRecipe: FC<Props> = ({ data }) => {
     sauce,
     steps,
   } = recipe
-  console.log(source)
   return (
     <RecipeGrid>
       <RecipeHeader>
@@ -65,35 +64,49 @@ const SinglePageRecipe: FC<Props> = ({ data }) => {
               </li>
             ))}
           </ul>
-          <h1>Spices</h1>
-          <ul>
-            {spices?.map((spice) => (
-              <li key={spice}>
-                <p>{spice}</p>
-              </li>
-            ))}
-          </ul>
-          <h1>Sauce</h1>
-          <ul>
-            {sauce?.map((sauceIngredient) => (
-              <li key={sauceIngredient}>
-                <p>{sauceIngredient}</p>
-              </li>
-            ))}
-          </ul>
+          {!!spices?.length && (
+            <>
+              <h1>Spices</h1>
+              <ul>
+                {spices?.map((spice) => (
+                  <li key={spice}>
+                    <p>{spice}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {!!sauce?.length && (
+            <>
+              <h1>Sauce</h1>
+              <ul>
+                {sauce?.map((sauceIngredient) => (
+                  <li key={sauceIngredient}>
+                    <p>{sauceIngredient}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </IngredientStyles>
       </RecipeImageAndIngredients>
       <StepsContainer>
         <h1>Steps</h1>
-        <ul>
-          {steps?.map((step) => (
-            <Step>
-              <li key={step}>
-                <p>{step}</p>
-              </li>
-            </Step>
-          ))}
-        </ul>
+        {!!steps?.length ? (
+          <ul>
+            {steps?.map((step) => (
+              <Step>
+                <li key={step}>
+                  <p>{step}</p>
+                </li>
+              </Step>
+            ))}
+          </ul>
+        ) : (
+          <div>
+            <p>No steps have been added yet! Add them in Sanity Studio!</p>
+          </div>
+        )}
       </StepsContainer>
     </RecipeGrid>
   )

@@ -137,7 +137,9 @@ const MobileSingleRecipe = ({ recipe }: { recipe: Recipe }) => {
 }
 
 const RecipeList: FC<Props> = ({ recipes }) => {
-  const sortedRecipes = recipes.sort((a, b) => a.name.localeCompare(b.name))
+  const sortedRecipes = recipes.sort((a, b) =>
+    a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+  )
   return (
     <>
       <RecipeGrid>
